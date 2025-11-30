@@ -1,17 +1,6 @@
-﻿
-using System.Runtime.CompilerServices;
-using System.Runtime.ConstrainedExecution;
-using MathGame;
-Console.Clear();
+﻿using MathGame;
 
-Console.Write("Welcome to the Math Game. Please enter your name: ");
-string? userName = Console.ReadLine();
-
-decimal winningScore = 10;
-
-Console.WriteLine($"\n\nThanks for playing, {userName}!\n\nYou need {winningScore} points to win.\n");
-
-// Helper Variables
+// Helper Variables ----------------------------------
 string? userInput;
 int num1;
 int num2;
@@ -21,8 +10,18 @@ int userScore = 0;
 bool gameWon = false;
 GameHistory history = new();
 string gameSelection = "";
+decimal winningScore = 10;
 
-do // Main Game loop
+
+// Intro ---------------------------------------------
+Console.Clear();
+Console.Write("Welcome to the Math Game. Please enter your name: ");
+string? userName = Console.ReadLine();
+Console.WriteLine($"\n\nThanks for playing, {userName}!\n\nYou need {winningScore} points to win.\n");
+
+
+// Main Game loop ------------------------------------
+do
 {
     Console.WriteLine("Please make a selection:\n\n" +
                 "[1] - Addition\n" +
@@ -39,25 +38,25 @@ do // Main Game loop
         case "1":
             Console.Clear();
             AdditionGame();
-            saveGame();
+            SaveGame();
             Console.WriteLine($"Score: {userScore}");
             break;
         case "2":
             Console.Clear();
             SubtractGame();
-            saveGame();
+            SaveGame();
             Console.WriteLine($"Score: {userScore}");
             break;
         case "3":
             Console.Clear();
             MultiplyGame();
-            saveGame();
+            SaveGame();
             Console.WriteLine($"Score: {userScore}");
             break;
         case "4":
             Console.Clear();
             DivisionGame();
-            saveGame();
+            SaveGame();
             Console.WriteLine($"Score: {userScore}");
             break;
         case "5":
@@ -65,6 +64,7 @@ do // Main Game loop
             history.DisplayItems();
             break;
         case "q":
+            Console.Clear();
             Console.WriteLine($"Score: {userScore}");
             Console.WriteLine("Exiting program... Press any key to proceed.");
             Console.ReadLine();
@@ -87,8 +87,8 @@ do // Main Game loop
 
 void AdditionGame()
 {
-    // Console.Clear();
-    int[] numbers = GetNumbers(1, 11);
+    Console.Clear();
+    int[] numbers = GetNumbers(1, 10);
     answer = numbers[0] + numbers[1];
 
     Console.WriteLine($"What is {numbers[0]} + {numbers[1]}?");
@@ -117,8 +117,8 @@ void AdditionGame()
 
 void SubtractGame()
 {
-    // Console.Clear();
-    int[] numbers = GetNumbers(1, 11);
+    Console.Clear();
+    int[] numbers = GetNumbers(1, 10);
     answer = numbers[0] - numbers[1];
 
     Console.WriteLine($"What is {numbers[0]} - {numbers[1]}?");
@@ -147,8 +147,8 @@ void SubtractGame()
 
 void MultiplyGame()
 {
-    // Console.Clear();
-    int[] numbers = GetNumbers(1, 11);
+    Console.Clear();
+    int[] numbers = GetNumbers(1, 10);
     answer = numbers[0] * numbers[1];
 
     Console.WriteLine($"What is {numbers[0]} x {numbers[1]}?");
@@ -176,7 +176,7 @@ void MultiplyGame()
 
 void DivisionGame()
 {
-    // Console.Clear();
+    Console.Clear();
     int[] numbers = GetNumbers(1, 100);
     bool validSelection = false;
     do // Return 
@@ -229,7 +229,7 @@ int[] GetNumbers(int minValue, int maxValue)
     return [num1, num2];
 }
 
-void saveGame()
+void SaveGame()
 {
     System.Console.WriteLine("Game saved!");
     Game game = new();
